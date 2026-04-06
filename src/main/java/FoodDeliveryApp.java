@@ -19,7 +19,6 @@ public class FoodDeliveryApp {
 
     // Initialize sample restaurants and menu items
     private void initializeRestaurants() {
-        // Restaurant 1: Pizza Palace
         Restaurant pizzaPlace = new Restaurant("R001", "Pizza Palace", "123 Main Street", 50);
         pizzaPlace.addMenuItem(new MenuItem("P001", "Margherita Pizza", 250, "Classic cheese pizza"));
         pizzaPlace.addMenuItem(new MenuItem("P002", "Pepperoni Pizza", 350, "Pizza with pepperoni"));
@@ -27,7 +26,6 @@ public class FoodDeliveryApp {
         pizzaPlace.addMenuItem(new MenuItem("P004", "Coke", 50, "Cold carbonated drink"));
         restaurants.add(pizzaPlace);
 
-        // Restaurant 2: Burger Hub
         Restaurant burgerHub = new Restaurant("R002", "Burger Hub", "456 Oak Avenue", 40);
         burgerHub.addMenuItem(new MenuItem("B001", "Veggie Burger", 150, "Fresh vegetable burger"));
         burgerHub.addMenuItem(new MenuItem("B002", "Chicken Burger", 200, "Grilled chicken burger"));
@@ -35,7 +33,6 @@ public class FoodDeliveryApp {
         burgerHub.addMenuItem(new MenuItem("B004", "Milkshake", 120, "Vanilla milkshake"));
         restaurants.add(burgerHub);
 
-        // Restaurant 3: Curry House
         Restaurant curryHouse = new Restaurant("R003", "Curry House", "789 Spice Road", 60);
         curryHouse.addMenuItem(new MenuItem("C001", "Butter Chicken", 300, "Creamy butter chicken"));
         curryHouse.addMenuItem(new MenuItem("C002", "Biryani", 250, "Fragrant rice biryani"));
@@ -63,7 +60,6 @@ public class FoodDeliveryApp {
         Restaurant selected = restaurants.get(restaurantIndex);
         selected.displayMenu();
 
-        // Create new order
         Order currentOrder = new Order("ORD" + (orderCounter++), selected, selected.getDeliveryFee());
 
         boolean addingItems = true;
@@ -79,7 +75,6 @@ public class FoodDeliveryApp {
                     System.out.println("Item not found!");
                     continue;
                 }
-
                 System.out.print("Enter quantity: ");
                 try {
                     int quantity = Integer.parseInt(scanner.nextLine().trim());
@@ -114,11 +109,10 @@ public class FoodDeliveryApp {
             System.out.println("\nNo orders yet!");
             return;
         }
-
         System.out.println("\n========== ORDER HISTORY ==========");
         for (Order order : orderHistory) {
-            System.out.println("Order ID: " + order.getOrderId() + 
-                             " | Status: " + order.getStatus() + 
+            System.out.println("Order ID: " + order.getOrderId() +
+                             " | Status: " + order.getStatus() +
                              " | Total: ₹" + String.format("%.2f", order.calculateTotal()));
         }
         System.out.println("===================================\n");
@@ -136,64 +130,12 @@ public class FoodDeliveryApp {
     // Main application loop
     public void run() {
         System.out.println("Welcome to Food Delivery App!");
-
         boolean running = true;
         while (running) {
             displayMainMenu();
             System.out.print("Enter your choice (1-3): ");
             String choice = scanner.nextLine().trim();
-
             switch (choice) {
                 case "1":
                     displayRestaurants();
-                    System.out.print("Select restaurant number: ");
-                    try {
-                        int restaurantNum = Integer.parseInt(scanner.nextLine().trim());
-                        browseAndOrder(restaurantNum - 1);
-                    } catch (NumberFormatException e) {
-                        System.out.println("Invalid input!");
-                    }
-                    break;
-
-                case "2":
-                    viewOrderHistory();
-                    break;
-
-                case "3":
-                    System.out.println("Thank you for using Food Delivery App! Goodbye!");
-                    running = false;
-                    break;
-
-                default:
-                    System.out.println("Invalid choice! Please try again.");
-            }
-        }
-
-        scanner.close();
-    }
-
-    // Main method
-    public static void main(String[] args) {
-        FoodDeliveryApp app = new FoodDeliveryApp();
-        app.run();
-    }
-}
-
-// Add these methods to your existing FoodDeliveryApp.java
-
-public Restaurant getRestaurantById(String id) {
-    for (Restaurant r : restaurants) {
-        if (r.getRestaurantId().equals(id)) {
-            return r;
-        }
-    }
-    return null;
-}
-
-public void addOrder(Order order) {
-    orderHistory.add(order);
-}
-
-public List<Order> getOrderHistory() {
-    return orderHistory;
-}
+                    System.out.print("Selec
