@@ -41,6 +41,26 @@ public class FoodDeliveryApp {
         restaurants.add(curryHouse);
     }
 
+    // ✅ NEW METHOD: Get restaurant by ID (USED BY SERVLETS)
+    public Restaurant getRestaurantById(String restaurantId) {
+        for (Restaurant restaurant : restaurants) {
+            if (restaurant.getRestaurantId().equalsIgnoreCase(restaurantId)) {
+                return restaurant;
+            }
+        }
+        return null;
+    }
+
+    // ✅ NEW METHOD: Add order (USED BY SERVLETS)
+    public void addOrder(Order order) {
+        orderHistory.add(order);
+    }
+
+    // ✅ NEW METHOD: Get order history (USED BY SERVLETS)
+    public List<Order> getOrderHistory() {
+        return orderHistory;
+    }
+
     // Display all restaurants
     public void displayRestaurants() {
         System.out.println("\n========== AVAILABLE RESTAURANTS ==========");
