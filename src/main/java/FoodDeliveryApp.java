@@ -112,8 +112,8 @@ public class FoodDeliveryApp {
         System.out.println("\n========== ORDER HISTORY ==========");
         for (Order order : orderHistory) {
             System.out.println("Order ID: " + order.getOrderId() +
-                             " | Status: " + order.getStatus() +
-                             " | Total: ₹" + String.format("%.2f", order.calculateTotal()));
+                    " | Status: " + order.getStatus() +
+                    " | Total: ₹" + String.format("%.2f", order.calculateTotal()));
         }
         System.out.println("===================================\n");
     }
@@ -135,7 +135,37 @@ public class FoodDeliveryApp {
             displayMainMenu();
             System.out.print("Enter your choice (1-3): ");
             String choice = scanner.nextLine().trim();
+
             switch (choice) {
                 case "1":
                     displayRestaurants();
-                    System.out.print("Selec
+                    System.out.print("Select a restaurant (1-" + restaurants.size() + "): ");
+                    try {
+                        int index = Integer.parseInt(scanner.nextLine().trim()) - 1;
+                        browseAndOrder(index);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input!");
+                    }
+                    break;
+
+                case "2":
+                    viewOrderHistory();
+                    break;
+
+                case "3":
+                    running = false;
+                    System.out.println("Thank you for using the app!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice! Please try again.");
+            }
+        }
+    }
+
+    // Main method
+    public static void main(String[] args) {
+        FoodDeliveryApp app = new FoodDeliveryApp();
+        app.run();
+    }
+}
