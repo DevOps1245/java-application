@@ -178,3 +178,22 @@ public class FoodDeliveryApp {
         app.run();
     }
 }
+
+// Add these methods to your existing FoodDeliveryApp.java
+
+public Restaurant getRestaurantById(String id) {
+    for (Restaurant r : restaurants) {
+        if (r.getRestaurantId().equals(id)) {
+            return r;
+        }
+    }
+    return null;
+}
+
+public void addOrder(Order order) {
+    orderHistory.add(order);
+}
+
+public List<Order> getOrderHistory() {
+    return orderHistory;
+}
