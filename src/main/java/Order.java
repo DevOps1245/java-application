@@ -121,4 +121,8 @@ public class Order {
     public LocalDateTime getOrderTime() {
         return orderTime;
     }
+    // Add this getter to Order.java
+public String getRestaurant() {
+    return restaurant.getRestaurantName();
+}
 }
